@@ -11,7 +11,7 @@ def index():
 
 @app.route('/prefix/<as_set>')
 def get_prefix(as_set):
-    if not re.match('^AS', as_set):
+    if not re.match('^AS', as_set.upper()):
         abort(403, "Doesn't look like an AS-SET or aut-num - otherwise it would begin 'AS'.  ")
     raw_prefixlist = json.loads(subprocess.check_output(['bgpq3', '-Aj', as_set]))
     return jsonify(raw_prefixlist)
