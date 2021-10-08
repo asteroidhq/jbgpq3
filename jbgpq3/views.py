@@ -50,7 +50,7 @@ def get_prefix(as_set):
     else:
         raw_prefixlist = subprocess.check_output(['bgpq3', '-S', 'RIPE,APNIC,AFRINIC,ARIN,JPIRR,NTTCOM,RADB,ALTDB,BELL,LEVEL3,RGNET,TC', '-A4j', as_set])
         with open("/tmp/jbgpq3_4" + as_set, "w") as myfile:
-            myfile.write(raw_prefixlist)    
+            myfile.write(raw_prefixlist.decode())
     display_prefixlist["prefixes_ipv4"] = json.loads(raw_prefixlist)["NN"]
 
 
@@ -61,7 +61,7 @@ def get_prefix(as_set):
     else:
         raw_prefixlist = subprocess.check_output(['bgpq3', '-S', 'RIPE,APNIC,AFRINIC,ARIN,JPIRR,NTTCOM,RADB,ALTDB,BELL,LEVEL3,RGNET,TC', '-A6j', as_set])
         with open("/tmp/jbgpq3_6" + as_set, "w") as myfile:
-            myfile.write(raw_prefixlist)    
+            myfile.write(raw_prefixlist.decode())
     display_prefixlist["prefixes_ipv6"] = json.loads(raw_prefixlist)["NN"]
 
 
